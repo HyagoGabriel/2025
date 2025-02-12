@@ -53,7 +53,7 @@ function Cadastro() {
         <Avatar
           sx={{
             margin: 1,
-            backgroundColor: "#000000",
+            backgroundColor: "rgb(154,154,154)",
           }}
         >
           <LockOutlinedIcon />
@@ -125,7 +125,7 @@ function Cadastro() {
               mt: 3,
               mb: 2,
               color: "white",
-              backgroundColor: "#000000",
+              backgroundColor: "rgb(154,154,154)",
               display: "flex",
             }}
             fullWidth

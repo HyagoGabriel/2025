@@ -7,6 +7,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
+import api from "../axios/axios";
 
 function Login() {
   const [user, setUser] = useState({
@@ -21,15 +22,24 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert("Email:"+user.email+" "+"Senha:"+user.password)
-
+    Login();
   };
+
+  async function Login() {
+    await api.postLogin(user).then((response) => {
+      alert(response.data.message)
+    },
+  (error)=>{
+    console.log(error)
+    alert(error.response.data.error)
+  });
+  }
 
   return (
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
-          marginTop: 8,
+          mt: 20,
           display: "flex",
           alignItems: "center",
           flexDirection: "column",
@@ -38,18 +48,18 @@ function Login() {
         <Avatar
           sx={{
             margin: 1,
-            backgroundColor: "red",
+            backgroundColor: "#000000",
           }}
         >
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Vio
+          Login - VIO
         </Typography>
         <Box
           component="form"
           sx={{
-            mt: "1",
+            mt: 1,
           }}
           onSubmit={handleSubmit}
           noValidate
@@ -58,7 +68,7 @@ function Login() {
             required
             fullWidth
             id="email"
-            label="Email"
+            label="e-mail"
             name="email"
             margin="normal"
             value={user.email}
@@ -68,19 +78,19 @@ function Login() {
             required
             fullWidth
             id="password"
-            label="Senha"
+            label="senha"
             name="password"
-            margin="normal"
             type="password"
+            margin="normal"
             value={user.password}
             onChange={onChange}
           />
           <Button
             sx={{
-              mt: "3",
-              mb: "2",
+              mt: 3,
+              mb: 2,
               color: "white",
-              backgroundColor: "red",
+              backgroundColor: "#000000",
               display: "flex",
             }}
             fullWidth
